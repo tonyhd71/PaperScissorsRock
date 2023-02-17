@@ -2,8 +2,6 @@
         //let randomInt = Math.floor(Math.random() * 3 + 1);
         let randomInt = Math.floor(Math.random() * 3 + 1);
         let choice;
-    
-        console.log(randomInt + " these should be different");
         if (randomInt == 1) {
             choice = "rock";
             return choice;
@@ -17,43 +15,8 @@
             alert("idk");
         }
     }
-    
-    ////MIGHT GET RID OF THIS OR RESTART
     /*
-    function playRound() {
-        //main game code
-        const playerSelection = retrievePlayerChoice();
-        const computerSelection = getComputerChoice();
-        console.log(playerSelection + " this hould not be null");
-        //RETURN 0 FOR PLAYER LOSE, 1 FOR PLAYER WIN, 2 FOR DRAW
-        console.log(playerSelection + " is what player has chosen");
-        console.log(computerSelection + " Is what Computer has chosen"); 
-        if (playerSelection == computerSelection) {
-            console.log("This match is a draw");
-            return 3;
-        } else if (playerSelection =="rock" && computerSelection =="paper") {
-            console.log("rock loses to paper");
-            return 2;
-        } else if (playerSelection =="rock" &&  computerSelection =="scissors") {
-            console.log("rock beats scissors");
-            return 1;
-        } else if (playerSelection =="paper" && computerSelection =="scissors") {
-            console.log("paper loses  to scissors");
-            return 2;
-        } else if (playerSelection =="paper" && computerSelection =="rock") {
-            console.log("paper beats rock");
-            return 1;
-        } else if (playerSelection =="scissors" && computerSelection =="rock") {
-            console.log("scissors loses to rock");
-            return 2;
-        } else if (playerSelection =="scissors" && computerSelection =="paper") {
-            console.log("scissors beats paper");
-            return 2;
-        } else if (playerSelection == null || computerSelection == null) {
-            console.log("EXCEPTION");
-        }
-    }
-    /*/
+    
     let computerPoints;
     let playerPoints;
     let matchWon = false;
@@ -90,6 +53,7 @@
             alert("This match is a draw");
          }   
     }
+    */
     
     function retrievePlayerChoice (arg1) {
         let item = arg1;
@@ -107,16 +71,68 @@
         }
     }
     let selectedObj;
+    let playerPts = 0;
+    let comPoints =0;
+    function tallyPoints(itemReturnValue) {
+        if (itemReturnValue == 1) {
+            playerPts = playerPts + 1;
+            console.log("Player has " + playerPts);
+        } else if (itemReturnValue == 2) {
+            comPoints = comPoints + 1;
+            console.log("Computer has " + comPoints);
+        } else if (itemReturnValue == 3) {
+            console.log("tie");
+        }
+        if (playerPts >= 5) {
+            console.log("You have won");
+        } else if (comPoints >= 5) {
+            console.log("You have lost");
+        }
+    } 
+    function getChosenItem(plyr, comp) {
+        //PLAYER WINS RETURN 1, COMPUTER WINS RETURN 2, DRAW RETURN 3
+        if (plyr == comp) {
+            console.log("This match is a draw");
+            return 3;
+        } else if (plyr =="rock" && comp =="paper") {
+            console.log("rock loses to paper");
+            return 2;
+        } else if (plyr =="rock" &&  comp =="scissors") {
+            console.log("rock beats scissors");
+            return 1;
+        } else if (plyr =="paper" && comp =="scissors") {
+            console.log("paper loses  to scissors");
+            return 2;
+        } else if (plyr =="paper" && comp =="rock") {
+            console.log("paper beats rock");
+            return 1;
+        } else if (plyr =="scissors" && comp =="rock") {
+            console.log("scissors loses to rock");
+            return 2;
+        } else if (plyr =="scissors" && comp =="paper") {
+            console.log("scissors beats paper");
+            return 1;
+        } else if (plyr == null || comp == null) {
+            console.log("EXCEPTION");
+            return 4;
+        }
+        //
+        console.log("Testing to see if this works. Player chose " + plyr + " computer chose " + comp);
+        
+    }
     const items = document.querySelectorAll(".imgs");
     for (var i = 0 ; i < items.length; i++) {
         items[i].addEventListener('click', function (e) {
          selectedObj = parseInt(e.target.id);
-         let playerPts =retrievePlayerChoice(selectedObj);
-         let comPoints = getComputerChoice();
-         console.log("player chose " + playerPts +  "computer: " + comPoints);
+         let playerChoice =retrievePlayerChoice(selectedObj);
+         let computerChoice = getComputerChoice();
+         console.log("player chose " + playerChoice + " computer chose " + computerChoice);
+         tallyPoints(getChosenItem(playerChoice, computerChoice));
        });
    }
    
+    
+ 
    
    //game_progress();
    /*
@@ -174,7 +190,53 @@
         console.log(this);
     }));
     */
-    
+    ////MIGHT GET RID OF THIS OR RESTART
+    /*
+    function playRound() {
+        //main game code
+        const playerSelection = retrievePlayerChoice();
+        const computerSelection = getComputerChoice();
+        console.log(playerSelection + " this hould not be null");
+        //RETURN 0 FOR PLAYER LOSE, 1 FOR PLAYER WIN, 2 FOR DRAW
+        console.log(playerSelection + " is what player has chosen");
+        console.log(computerSelection + " Is what Computer has chosen"); 
+        if (playerSelection == computerSelection) {
+            console.log("This match is a draw");
+            return 3;
+        } else if (playerSelection =="rock" && computerSelection =="paper") {
+            console.log("rock loses to paper");
+            return 2;
+        } else if (playerSelection =="rock" &&  computerSelection =="scissors") {
+            console.log("rock beats scissors");
+            return 1;
+        } else if (playerSelection =="paper" && computerSelection =="scissors") {
+            console.log("paper loses  to scissors");
+            return 2;
+        } else if (playerSelection =="paper" && computerSelection =="rock") {
+            console.log("paper beats rock");
+            return 1;
+        } else if (playerSelection =="scissors" && computerSelection =="rock") {
+            console.log("scissors loses to rock");
+            return 2;
+        } else if (playerSelection =="scissors" && computerSelection =="paper") {
+            console.log("scissors beats paper");
+            return 2;
+        } else if (playerSelection == null || computerSelection == null) {
+            console.log("EXCEPTION");
+        }
+    }
+    /*/
+
+
+
+
+
+
+
+
+
+
+
     
     
     
