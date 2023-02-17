@@ -18,12 +18,13 @@
         }
     }
     
+    ////MIGHT GET RID OF THIS OR RESTART
     /*
     function playRound() {
         //main game code
-        const buttons = document.querySelectorAll('.imgs');
-        const playerSelection = getPlayerChoice();
+        const playerSelection = retrievePlayerChoice();
         const computerSelection = getComputerChoice();
+        console.log(playerSelection + " this hould not be null");
         //RETURN 0 FOR PLAYER LOSE, 1 FOR PLAYER WIN, 2 FOR DRAW
         console.log(playerSelection + " is what player has chosen");
         console.log(computerSelection + " Is what Computer has chosen"); 
@@ -52,12 +53,13 @@
             console.log("EXCEPTION");
         }
     }
-    */
-    
+    /*/
+    let computerPoints;
+    let playerPoints;
+    let matchWon = false;
     function game_progress() {
-            let result = 1;
-            let playerPoints =1;
-            let computerPoints = 2;
+            let result = playRound();
+            computerPoints = 1;
             if (result == 2) {
                 console.log("YOU LOST");
                 computerPoints = computerPoints + 1;
@@ -75,7 +77,7 @@
                 console.log("This match is a draw");
                 console.log("PLayer points is " + playerPoints);
                 console.log("Computer points is " + computerPoints);
-            } else if (td == null) {
+            } else if (result == null) {
                 alert("please input rock, paper, or scissors");
             } else {
                 alert("bye");
@@ -86,16 +88,37 @@
             alert("you have lost");
          } else if (playerPoints == computerPoints) {
             alert("This match is a draw");
-         }
-         
+         }   
     }
+    
+    function retrievePlayerChoice (arg1) {
+        let item = arg1;
+        if (item == 1) {
+            console.log("You chose rock");
+            return "rock";
+        } else if (item == 2) {
+            console.log("You chose paper")
+            return "paper";
+        } else if (item == 3) {
+            console.log("You chose scissors");
+            return "scissors";
+        } else {
+            alert("sorry");
+        }
+    }
+    let selectedObj;
     const items = document.querySelectorAll(".imgs");
-    for (var i = 0 ; i < 3; i++) {
-        items[i].addEventListener('click', function () {
-         console.log('che che che');
+    for (var i = 0 ; i < items.length; i++) {
+        items[i].addEventListener('click', function (e) {
+         selectedObj = parseInt(e.target.id);
+         let playerPts =retrievePlayerChoice(selectedObj);
+         let comPoints = getComputerChoice();
+         console.log("player chose " + playerPts +  "computer: " + comPoints);
        });
    }
-   alert(items.length);
+   
+   
+   //game_progress();
    /*
     for (let i = 0; i < items.length; i++){
          items[i].addEventListener('click', function (e) {
