@@ -9,30 +9,27 @@
     
 </head>
 <body>
-
-
-<!--<img src="rock.jpeg"><img src="paper.png"><img src="scissors.png">-->
 <h2>Select Rock, Paper, or Scissors</h2>
 <div class="container">
-      <input type="image" src="rock.jpeg" name="rockImg"  id="1" class="imgs"/>
-     <input type="image" src="paper.png" name="paperImg" id="2" class="imgs"/>
-    <input type="image" src="scissors.png" name="scissorsImg" id="3" class="imgs"/>
+      <input type="image" src="rock.jpeg" name="Rock"  id="1" class="imgs"/>
+     <input type="image" src="paper.png" name="Paper" id="2" class="imgs"/>
+    <input type="image" src="scissors.png" name="Scissors" id="3" class="imgs"/>
 </div>
 <input type="button" name="start" id="start" value="Start Game!">
-
+<br>
 <div id ="resultLine">
-    <span>Player Score: 
+    <span id="playerScoreText">Player Score: 
         <span id="#displayPlayerScore">0</span>
     </span>
     <br>
-    <span>Computer Score: 
+    <span id="computerScoreText">Computer Score: 
         <span id="#displayComputerScore">0</span>
     </span>
     <br>
     <h3 id="#displayResult"></h3>
+    <h1 id ="trackProgress"></h1>
 </div>
-
-
+<div id="roundResult"></div>
 </body>
 <script src="rockpaperscissors.js" defer>
 </script>
