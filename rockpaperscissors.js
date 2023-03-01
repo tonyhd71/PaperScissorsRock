@@ -52,16 +52,22 @@
         }
         if (playerPts >= 5) {
             displayResult.innerHTML = 'You have Won';
+            playAgain();
             console.log("You have won");
         } else if (comPoints >= 5) {
             displayResult.innerHTML = 'You have lost';
+            playAgain();
             console.log("You have lost");
         }
     } 
+    let roundResult = document.getElementById("#roundResult");
+    //function ()
     function getChosenItem(plyr, comp) {
         //PLAYER WINS RETURN 1, COMPUTER WINS RETURN 2, DRAW RETURN 3
         if (plyr == comp) {
             console.log("This match is a draw");
+            //roundResult.innerHTML = 'This round is a draw';
+            //INSERT ROUND RESULTS HERE
             return 3;
         } else if (plyr =="rock" && comp =="paper") {
             console.log("rock loses to paper");
@@ -86,6 +92,7 @@
             return 4;
         }        
     }
+    const progressText = document.getElementById("trackProgress");
     const items = document.querySelectorAll(".imgs");   
     for (var i = 0 ; i < items.length; i++) {
         items[i].addEventListener('click', function (e) {
@@ -93,11 +100,40 @@
          let playerChoice =retrievePlayerChoice(selectedObj);
          let computerChoice = getComputerChoice();
          console.log("player chose " + playerChoice + " computer chose " + computerChoice);
+         progressText.textContent = "Player chose " + playerChoice + ", Computer chose " + computerChoice;
          tallyPoints(getChosenItem(playerChoice, computerChoice));
        });
    }
+   
    let displayResult = document.getElementById("#displayResult");
-  
+   for (let item of items) {
+        item.addEventListener('mouseenter', function (e) {
+            item.style.scale = 1.3;
+            progressText.textContent = "Click on " + item.name + " to select " + item.name;
+
+        });
+        item.addEventListener('mouseleave', function (e) {
+            item.style.scale = 1.0;
+        });
+   }
+   function playAgain() {
+        const playAgain = document.createElement('button');
+            displayResult.insertAdjacentElement('afterend', playAgain);
+            playAgain.textContent = "Play Again?";
+            playAgain.style.marginLeft = 25;
+            playAgain.style.padding = 35;
+            playAgain.addEventListener('click', function () {
+            let playAgainAnswer = prompt("Do you want to play Again", 'No');
+            if (playAgainAnswer == 'yes') {
+                window.addEventListener('click', ()=>{ location.reload()});
+            } else if (playAgainAnswer == 'no') {
+                return;
+            } else {
+                alert("please enter Yes or No");
+            }
+            playAgainAnswer;
+            })
+   }
     
  
    
