@@ -35,6 +35,8 @@ let comPoints =0;
 const playerScoreHtml = document.getElementById("#displayPlayerScore");
 const compScoreHtml = document.getElementById("#displayComputerScore");
 const drawHtml = document.getElementById("#indicateDraw");
+const firstTo5 = document.getElementById('#firstToFive');
+//displayResult.textContent = 'First to 5 Wins!'
 function informPlayerOfResult() {
     if (playerPts >= 5) {
         displayResult.textContent = 'You have Won';
@@ -79,28 +81,28 @@ function tallyPoints(itemReturnValue) {
             //INSERT ROUND RESULTS HERE
             return 3;
         } else if (plyr =="rock" && comp =="paper") {
-            progressText.textContent = 'Rock loses to Paper';
+            progressText.textContent = 'Rock loses to Paper. You Lose!';
             drawHtml.textContent = '';
             return 2;
         } else if (plyr =="rock" &&  comp =="scissors") {
-            progressText.textContent = 'Rock beats Scissors';
+            progressText.textContent = 'Rock beats Scissors. You Win!';
             drawHtml.textContent = '';
             return 1;
         } else if (plyr =="paper" && comp =="scissors") {
-            progressText.textContent = 'Paper loses to Scissors';
+            progressText.textContent = 'Paper loses to Scissors You Lose!';
             drawHtml.textContent = '';
             return 2;
         } else if (plyr =="paper" && comp =="rock") {
-            progressText.textContent = 'Paper beats Rock';
+            progressText.textContent = 'Paper beats Rock. You Win!';
             drawHtml.textContent = '';
             return 1;
         } else if (plyr =="scissors" && comp =="rock") {
-            progressText.textContent = 'Scissors loses to Paper';
+            progressText.textContent = 'Scissors loses to Paper You Lose!';
             drawHtml.textContent = '';
             return 2;
         } else if (plyr =="scissors" && comp =="paper") {
             drawHtml.textContent = '';
-            progressText.textContent = 'Scissors beats Paper';
+            progressText.textContent = 'Scissors beats Paper. You Win!';
             return 1;
         } else if (plyr == null || comp == null) {
             console.log("EXCEPTION");
@@ -121,11 +123,10 @@ for (var i = 0 ; i < items.length; i++) {
 let displayResult = document.getElementById("#displayResult");
 let heading = document.getElementById('#heading');
 let container = document.getElementById('#container');
-
 for (let item of items) {
     item.addEventListener('mouseenter', function (e) {
         item.style.scale = 1.3;
-        progressText.textContent = "Click on " + item.name + " to select " + item.name;
+        progressText.textContent = "Choose " + item.name;
     });
         item.addEventListener('mouseleave', function (e) {
         item.style.scale = 1.0;
@@ -135,8 +136,8 @@ function playAgain() {
     const playAgain = document.createElement('button');
     displayResult.insertAdjacentElement('beforebegin', playAgain);
     playAgain.textContent = "Try Again?";
-    playAgain.style.marginLeft = 25;
-    playAgain.style.padding = 35;
+    playAgain.style.left = '50%';
+    playAgain.style.right = '50%';
     playAgain.addEventListener('click', function () {
         window.addEventListener('click', ()=>{ location.reload()});
     })
