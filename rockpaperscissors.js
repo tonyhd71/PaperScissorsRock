@@ -25,6 +25,7 @@
             return "paper";
         } else if (item == 3) {
             console.log("You chose scissors");
+
             return "scissors";
         } else {
             alert("sorry");
@@ -35,6 +36,21 @@
     let comPoints =0;
     const playerScoreHtml = document.getElementById("#displayPlayerScore");
     const compScoreHtml = document.getElementById("#displayComputerScore");
+    function roundIsDraw() {
+        //roundResult.innerHTML = 'This round is a Draw';
+        console.log("tie");
+    }
+    function informPlayerOfResult() {
+        if (playerPts >= 5) {
+            displayResult.textContent = 'You have Won';
+            displayResult.style.backgroundColor = 'green';
+            displayResult.style.color = 'white';
+        } else if (comPoints >= 5) {
+            displayResult.textContent = 'You have Lost';
+            displayResult.style.color = 'white';
+            displayResult.style.backgroundColor = 'red';
+        }
+    }
     function tallyPoints(itemReturnValue) {
         if (itemReturnValue == 1) {
             playerPts = parseInt(playerPts);
@@ -48,16 +64,27 @@
             console.log("Computer has " + comPoints);
             
         } else if (itemReturnValue == 3) {
-            console.log("tie");
+            //console.log("tie");
+            roundIsDraw();
         }
         if (playerPts >= 5) {
-            displayResult.innerHTML = 'You have Won';
+            /*
+            displayResult.textContent = 'You have Won';
+            displayResult.style.backgroundColor = 'green';
+            displayResult.style.color = 'white';
+            */
             playAgain();
             console.log("You have won");
+            informPlayerOfResult();
         } else if (comPoints >= 5) {
-            displayResult.innerHTML = 'You have lost';
+            /*
+            displayResult.textContent = 'You have Won';
+            displayResult.style.backgroundColor = 'red';
+            displayResult.style.color = 'white';
+            */
             playAgain();
             console.log("You have lost");
+            informPlayerOfResult();
         }
     } 
     let roundResult = document.getElementById("#roundResult");
@@ -92,6 +119,7 @@
             return 4;
         }        
     }
+    //lost
     const progressText = document.getElementById("trackProgress");
     const items = document.querySelectorAll(".imgs");   
     for (var i = 0 ; i < items.length; i++) {
